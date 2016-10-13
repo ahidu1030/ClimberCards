@@ -1,0 +1,36 @@
+<div class="cl-cardsview" ng-class="{'compact-layout': compactLayout(), 'no-interactions': noInteractions()}">
+	<div class="cardslist-wrapper">
+		<ol vs-repeat class="cardslist" style="list-style: none;">
+			<li ng-repeat="item in dataPages track by $index" class="listitem">
+				<div class="card-wrapper selectable"
+					ng-attr-title="{{item.qText}}"
+					
+					ng-click="clickCard($event, [item.qElemNumber])"
+					ng-attr-data-value="{{item.qElemNumber}}"
+					ng-attr-idx="{{$index}}"
+					>
+					<div class="img-wrapper">
+						<div class="cover" ng-style="{'background':'no-repeat center center url(' + item.coverUrl + ')', 'background-size': 'contain'}">
+						</div>
+						<div class="attr-value-wrapper">
+							<div class="attr-wrapper">
+								<div class="title">{{item.title}}</div>
+								<div class="secondaryAttribute">
+									
+								</div>
+							</div>
+							<div class="value-wrapper">
+								<div class="mainValue">{{item.mainValue}}
+									
+								</div>
+								<div class="mainValueTitle">
+									{{item.mainValueTitle}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>

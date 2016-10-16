@@ -2,6 +2,11 @@
 define( [], function () {
     'use strict';
     return {
+        props: {
+            layoutMode: "MEDIUM",
+            imageLayout: "LANDSCAPE",
+            imageSizeMode: "CONTAIN",
+        },
         qHyperCubeDef: {
             qDimensions: [],
             qMeasures: [],

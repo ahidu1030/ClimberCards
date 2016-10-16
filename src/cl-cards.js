@@ -59,6 +59,7 @@ define([
                 console.groupEnd();
 
                 this.$scope.backendApi = this.backendApi;
+                this.$scope.props = layout.props;
 
                 $element.find('.selected').removeClass('selected');
 
@@ -74,6 +75,7 @@ define([
                             'coverUrl': row[1].qText.substr(0, 1) == "/" ? prefix + row[1].qText : row[1].qText,
                             'mainValue': row[dimcount].qText,
                             'mainValueTitle': mainValueTitle,
+                            'secondaryAttribute': dimcount > 3 ? row[3].qText : "",
                             'qElemNumber': row[0].qElemNumber,
                             'qState': row[0].qState
                         }
@@ -219,8 +221,8 @@ define([
             controller: ['$scope', '$element', function($scope, $element) {
 
                 $scope.dataPages = {};
-
                 $scope.backendApi = {};
+                $scope.props = {};
 
 
                 $scope.selections = {
@@ -228,6 +230,19 @@ define([
                     swipe_idx_min: -1,
                     swipe_idx_max: -1,
                     values_to_select: [],
+                };
+
+                $scope.getCardSize = function () { 
+                    switch($scope.props.layoutMode) {
+                        case 'SMALL':
+                            return 35;
+                            break;
+                        case 'LARGE':
+                            return 94;
+                            break;
+                        default:
+                            return 60;
+                    }
                 };
 
                 $scope.noInteractions = function() {
@@ -250,7 +265,6 @@ define([
                 }
 
                 $scope.onSwipeStart = function($event) {
-                    console.log('swipestart event called', $event);
                     $scope.selections.values_to_select = [];
                     var target = $($event.originalEvent.target);
                     var idx = parseInt(target.attr('idx'));
@@ -260,43 +274,32 @@ define([
 
                     var value = parseInt(target.attr('data-value'));
 
-                    $scope.selections.selectionsMode = !target.hasClass('selected');
+                    $scope.selections.selectionsMode = !$(target).hasClass('selected');
 
                     if (typeof value != typeof undefined) {
                         if ($scope.selections.selectionsMode) {
-                            console.log('SwipeStart SelectionsMode', value);
                             $scope.selections.values_to_select.push(value);
-                            target.addClass('selected');
+                            $(target).addClass('selected');
                         } else {
-                            console.log('SwipeStart !SelectionsMode', value);
                             $scope.selections.values_to_select.push(value);
-                            target.removeClass('selected');
+                           $(target).removeClass('selected');
                         }
                     }
-
-                    //$scope.selections.values_to_select.push(value);
-                    //target.addClass('selected');
-
                 };
 
                 $scope.onSwipeUpdate = function($event) {
-                    console.log('swipeupdate event called', $event);
                     var target = $($event.originalEvent.target);
 
                     var idx = parseInt(target.attr('idx'));
-                    console.log('pre idx', idx);
-
+                    
                     var updateSelection = $scope.selections.swipe_idx_min > idx || $scope.selections.swipe_idx_max < idx;
 
                     if (updateSelection && !isNaN(idx)) {
                         $scope.selections.swipe_idx_min = $scope.selections.swipe_idx_min > idx ? idx : $scope.selections.swipe_idx_min;
                         $scope.selections.swipe_idx_max = $scope.selections.swipe_idx_max < idx ? idx : $scope.selections.swipe_idx_max;
 
-                        //Don't use list, use idx of dataPages instead
-                        var list = $($event.originalEvent.target.parentElement.children);
-
-                        list.slice($scope.selections.swipe_idx_min, $scope.selections.swipe_idx_max + 1).each(function(item) {
-                            var elem = this;
+                        for (var i = $scope.selections.swipe_idx_max; i >= $scope.selections.swipe_idx_min; i--) {
+                            var elem = $($element).find("[idx='" + i + "']")[0];
                             if ($scope.selections.selectionsMode) {
                                 if (!$(elem).hasClass('selected')) {
                                     var value = parseInt($(elem).attr('data-value'));
@@ -309,7 +312,7 @@ define([
                                 }
                             } else {
                                 if ($(elem).hasClass('selected')) {
-                                    var value = parseInt($(elem).attr('datavalue'));
+                                    var value = parseInt($(elem).attr('data-value'));
                                     if ($scope.selections.values_to_select.indexOf(value) == -1) {
                                         if (typeof value != typeof undefined) {
                                             $scope.selections.values_to_select.push(value);
@@ -318,9 +321,8 @@ define([
                                     }
                                 }
                             }
-                        });
+                        }
                     }
-                   
                 };
 
                 $scope.onSwipeCancel = function($event) {
@@ -329,24 +331,17 @@ define([
                 };
 
                 $scope.onSwipe = function($event) {
-                    console.log('Select values', $scope.selections);
-
+                   
                     $scope.selections.swipe_idx_min = -1;
                     $scope.selections.swipe_idx_max = -1;
 
                     if ($scope.selections.values_to_select != []) {
                         console.log('Select values', $scope.selections);
-                        console.log('$scope', $scope);
                         if($scope.selections.selectionsMode) {                            
                             $scope.selectValues(0, $scope.selections.values_to_select, true);
                         } else {
-                            $scope.selectValues(0, $scope.selections.values_to_select, false);
+                            $scope.selectValues(0, $scope.selections.values_to_select, true);
                         }
-
-                        
-                        
-                        
-
                     }
                     $scope.selections.field = '';
                 };

@@ -37,10 +37,66 @@ define( [], function () {
 	// Property Panel Definition
 	// ****************************************************************************************
 
+	  var layoutMode = {
+	    type: "string",
+	    component: "dropdown",
+	    label: "Layout Mode",
+	    ref: "props.layoutMode",
+	    defaultValue: "MEDIUM",
+	    options: [{
+	      value: "SMALL",
+	      label: "Small",
+	    }, {
+	      value: "MEDIUM",
+	      label: "Medium",
+	    }, {
+	      value: "LARGE",
+	      label: "Large",
+	    }],
+	  };
+
+	  var imageLayout = {
+	    type: "string",
+	    component: "dropdown",
+	    label: "Image Layout",
+	    ref: "props.imageLayout",
+	    defaultValue: "LANDSCAPE",
+	    options: [ {
+	      value: "LANDSCAPE",
+	      label: "Landscape",
+	    }, {
+	      value: "SQUARE",
+	      label: "Square",
+	    }, {
+	      value: "PORTRAIT",
+	      label: "Portrait",
+	    }],
+	  };
+
+	  var imageSizeMode = {
+	    type: "string",
+	    component: "dropdown",
+	    label: "Image Size Mode",
+	    ref: "props.imageSizeMode",
+	    defaultValue: "CONTAIN",
+	    options: [ {
+	      value: "CONTAIN",
+	      label: "Contain",
+	    }, {
+	      value: "COVER",
+	      label: "Cover",
+	    }, {
+	      value: "FILL",
+	      label: "Fill",
+	    }],
+	  };
 	// Appearance Panel
 	var appearancePanel = {
 		uses: "settings",
 		items: {
+			layoutMode: layoutMode,
+			imageLayout: imageLayout,
+			imageSizeMode: imageSizeMode,
 			initFetchRows : {
 							ref : "qHyperCubeDef.qInitialDataFetch.0.qHeight",
 							label : "Initial fetch rows",

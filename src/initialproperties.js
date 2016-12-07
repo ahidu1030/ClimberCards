@@ -6,6 +6,8 @@ define( [], function () {
             layoutMode: "MEDIUM",
             imageLayout: "LANDSCAPE",
             imageSizeMode: "CONTAIN",
+            selectOneAndGoto: false,
+            selectedSheet: "",
         },
         qHyperCubeDef: {
             qDimensions: [],

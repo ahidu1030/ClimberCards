@@ -1,9 +1,9 @@
 <div class="cl-cardsview" ng-class="{'compact-layout': compactLayout(), 'no-interactions': noInteractions()}">
 	<div class="cardslist-wrapper">
-		<ol vs-repeat="{{getCardSize()}}" class="cardslist" style="list-style: none;">
+		<ol class="cardslist" style="list-style: none;">
 			<li ng-repeat="item in dataPages track by $index" class="listitem">
 				<div class="card-wrapper selectable {{props.imageLayout}} {{props.imageSizeMode}} {{props.layoutMode}}"
-					ng-attr-title="{{item.qText}}"
+					ng-attr-title="{{item.id}}"
 					ng-click="clickCard($event, [item.qElemNumber])"
 					cl-swipestart="onSwipeStart($event)"
 					cl-swipeupdate="onSwipeUpdate($event)"

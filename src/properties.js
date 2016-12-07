@@ -1,5 +1,34 @@
-define( [], function () {
-	'use strict';
+/*global define*/
+define( [
+	'jquery',
+	'underscore',
+	'qlik',
+	'ng!$q',
+	'ng!$http'
+], function ( $, _, qlik, $q, $http ) {
+
+	var app = qlik.currApp();
+
+	var getSheetList = function () {
+
+		var defer = $q.defer();
+
+		app.getAppObjectList( function ( data ) {
+			var sheets = [];
+			var sortedData = _.sortBy( data.qAppObjectList.qItems, function ( item ) {
+				return item.qData.rank;
+			} );
+			_.each( sortedData, function ( item ) {
+				sheets.push( {
+					value: item.qInfo.qId,
+					label: item.qMeta.title
+				} );
+			} );
+			return defer.resolve( sheets );
+		} );
+
+		return defer.promise;
+	};
 
 	// ****************************************************************************************
 	// Dimensions & Measures
@@ -37,7 +66,59 @@ define( [], function () {
 	// Property Panel Definition
 	// ****************************************************************************************
 
-	  var layoutMode = {
+	var selectOneAndGoto = {
+		ref: "props.selectOneAndGoto",
+		label: "Selection mode",
+		type: "boolean",
+		component: "switch",
+		defaultValue: false,
+		options: [
+			{
+				value: true,
+				label: "Select and goto sheet"
+			},
+			{
+				value: false,
+				label: "Selection"
+			}
+		]
+	};
+
+	var sheetId = {
+		ref: "props.sheetId",
+		label: "Sheet ID",
+		type: "string",
+		expression: "optional",
+		show: function ( data ) {
+			return data.props.selectOneAndGoto;
+		}
+	};
+
+	var sheetList = {
+		type: "string",
+		component: "dropdown",
+		label: "Select Sheet",
+		ref: "props.selectedSheet",
+		options: function () {
+			return getSheetList().then( function ( items ) {
+				return items;
+			} );
+		},
+		show: function ( data ) {
+			return data.props.selectOneAndGoto;
+		}
+	};
+
+	var selectionPanel = {
+		label: "Selection mode",
+		type: "items",
+		items: { 
+			selectOneAndGoto: selectOneAndGoto,
+			sheetList: sheetList,
+		}
+	};
+
+	var layoutMode = {
 	    type: "string",
 	    component: "dropdown",
 	    label: "Layout Mode",
@@ -53,9 +134,9 @@ define( [], function () {
 	      value: "LARGE",
 	      label: "Large",
 	    }],
-	  };
+	};
 
-	  var imageLayout = {
+	var imageLayout = {
 	    type: "string",
 	    component: "dropdown",
 	    label: "Image Layout",
@@ -71,7 +152,7 @@ define( [], function () {
 	      value: "PORTRAIT",
 	      label: "Portrait",
 	    }],
-	  };
+	};
 
 	  var imageSizeMode = {
 	    type: "string",
@@ -90,13 +171,22 @@ define( [], function () {
 	      label: "Fill",
 	    }],
 	  };
+	  // Appearance Panel
+	var layoutPanel = {
+		label: "Cards Layout",
+		type: "items",
+		items: { 
+			layoutMode: layoutMode,
+			imageLayout: imageLayout,
+			imageSizeMode: imageSizeMode,
+		}
+	};
 	// Appearance Panel
 	var appearancePanel = {
 		uses: "settings",
 		items: {
-			layoutMode: layoutMode,
-			imageLayout: imageLayout,
-			imageSizeMode: imageSizeMode,
+			selectionPanel: selectionPanel,
+			layoutPanel: layoutPanel,
 			initFetchRows : {
 							ref : "qHyperCubeDef.qInitialDataFetch.0.qHeight",
 							label : "Initial fetch rows",

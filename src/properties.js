@@ -4,7 +4,8 @@ define( [
 	'underscore',
 	'qlik',
 	'ng!$q',
-	'ng!$http'
+	'ng!$http',
+	'./lib/js/components/pp-climber/pp-climber'
 ], function ( $, _, qlik, $q, $http ) {
 
 	var app = qlik.currApp();
@@ -65,6 +66,11 @@ define( [
 	// ****************************************************************************************
 	// Property Panel Definition
 	// ****************************************************************************************
+	 var about = {
+        component: "pp-cl-cards",
+        translation: "Common.About",
+        show: true,
+    };
 
 	var selectOneAndGoto = {
 		ref: "props.selectOneAndGoto",
@@ -205,7 +211,8 @@ define( [
 			measures: measures,
 			sorting: sorting,
 			addons: addons,
-			appearance: appearancePanel
+			appearance: appearancePanel,
+			about: about
 
 		}
 	};

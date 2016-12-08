@@ -31,17 +31,17 @@ Landscape
 # Layout modes
 ![Alt text](/screenshots/propertypanel_layoutmode.PNG?raw=true "Layout modes")
 
-Layout mode
+Layout mode options
 * Small
 * Medium
 * Large
 
-Image mode
+Image mode options
 * Portrait
 * Landscape
 * Square
 
-Image Size mode
+Image Size mode options
 * Contain
 * Cover
 * Fill

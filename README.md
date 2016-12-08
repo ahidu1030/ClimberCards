@@ -26,10 +26,10 @@ Landscape
 * 4th dimension is optional and will show up under the titel.  
 
 Selection modes
-![Alt text](/screenshots/popertypanel_selectionmode.PNG?raw=true "Selection mode - Selections")
-![Alt text](/screenshots/popertypanel_selectionmode_gotosheet.PNG?raw=true "Selection mode - Select and goto sheet")
+![Alt text](/screenshots/propertypanel_selectionmode.PNG?raw=true "Selection mode - Selections")
+![Alt text](/screenshots/propertypanel_selectionmode_gotosheet.PNG?raw=true "Selection mode - Select and goto sheet")
 Layout modes
-![Alt text](/screenshots/popertypanel_layoutmode.PNG?raw=true "Layout modes")
+![Alt text](/screenshots/propertypanel_layoutmode.PNG?raw=true "Layout modes")
 Layout mode
 * Small
 * Medium

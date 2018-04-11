@@ -1,6 +1,8 @@
 # Climber Cards
 > Table extension with cards as cells, developed for showcasing items with images. Responsive design and selection enabled, both click and swipes. Multiple layout options and Select and Go To Sheet mode
 
+***Tested from Qlik Sense June 2017 (in the initial release of June 2017, extensions load slow. It's fixed in patch 1 )***
+
 ## Screenshots
 Portrait 
 ![Alt text](/screenshots/layout_modes_portrait.PNG?raw=true "Portrait")

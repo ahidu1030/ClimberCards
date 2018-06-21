@@ -1,23 +1,25 @@
 # Climber Cards
+<a href="https://github.com/ClimberAB/cl-cards/releases/download/v1.3.0/cl-cards-v1.3.0.zip" target="_blank"><img src="./screenshots/downloadbutton.png?raw=true" 
+alt="Download latest release" width="400" height="40" border="0" /></a>  
 > Table extension with cards as cells, developed for showcasing items with images. Responsive design and selection enabled, both click and swipes. Multiple layout options and Select and Go To Sheet mode
 
 ***Tested from Qlik Sense June 2017 (in the initial release of June 2017, extensions load slow. It's fixed in patch 1 )***
 
 ## Screenshots
 Portrait 
-![Alt text](/screenshots/layout_modes_portrait.PNG?raw=true "Portrait")
+<img src="./screenshots/layout_modes_portrait.PNG?raw=true" alt="Portrait" />
 Landscape
-![Alt text](/screenshots/layout_modes_landscape.PNG?raw=true "Landscape")
+<img src="./screenshots/layout_modes_landscape.PNG?raw=true" alt="Landscape" />
 ## Installation
 
 1. Download the latest version
 2. Qlik Sense Desktop
 	* To install, copy all files in the .zip file to folder "C:\Users\[%Username%]\Documents\Qlik\Sense\Extensions\Cards"
 3. Qlik Sense Server
-	* See instructions [how to import an extension on Qlik Sense Server](http://help.qlik.com/en-US/sense/Subsystems/ManagementConsole/Content/import-extensions.htm)
+	* See instructions <a href="http://help.qlik.com/en-US/sense/Subsystems/ManagementConsole/Content/import-extensions.htm"> how to import an extension on Qlik Sense Server </a>
 
 ## Configuration
-![Alt text](/screenshots/propertypanel_dimensions.PNG?raw=true "Dimensions")
+<img src="./screenshots/propertypanel_dimensions.PNG?raw=true" alt="Dimensions" />
 * 1st dimension is the unique identifier that will be selected if a card is selected. The identifier won't show up on the card. 
 * 2nd dimension is the image and needs a url for source. 
   * Example url string: 'http://ia.media-imdb.com/images/M/MV5BMjEyMjcyNDI4MF5BMl5BanBnXkFtZTcwMDA5Mzg3OA@@._V1_UX34_CR0,0,34,50_AL_.jpg'
@@ -28,11 +30,11 @@ Landscape
 # Selection modes
 It is possible to use selections to go to another sheet. 
 When "Select and goto sheet" is enabled, swipe selections are disabled. (I.e. it is only possible to select one row in the table.) If one value is already selected it will be deselected and no goto sheet action taken.  
-![Alt text](/screenshots/propertypanel_selectionmode.PNG?raw=true "Selection mode - Selections")  
-![Alt text](/screenshots/propertypanel_selectionmode_gotosheet.PNG?raw=true "Selection mode - Select and goto sheet")  
+<img src="./screenshots/propertypanel_selectionmode.PNG?raw=true" alt="Selection mode - Selections" />  
+<img src="./screenshots/propertypanel_selectionmode_gotosheet.PNG?raw=true" alt="Selection mode - Select and goto sheet" />  
 # Layout modes  
 See large screenshots above for examples on how the different options display.  
-![Alt text](/screenshots/propertypanel_layoutmode.PNG?raw=true "Layout modes")  
+<img src="./screenshots/propertypanel_layoutmode.PNG?raw=true" alt="Layout modes" />  
 
 Layout mode options
 * Small
@@ -83,7 +85,7 @@ I cannot guarantee that I will merge all PRs.
 
 ## Change Log
 
-See [CHANGELOG](CHANGELOG.yml)
+See <a href="CHANGELOG.yml"> CHANGELOG </a>
 
 ## Known Issues and Limitations
 
@@ -92,7 +94,7 @@ The extension is intended for top lists and dashboard. Because of that we have n
 ## License & Copyright
 The software is made available "AS IS" without any warranty of any kind under the MIT License (MIT).
 
-See [Additional license information for this solution.](LICENSE.md)
+See <a href="LICENSE.md">Additional license information for this solution. </a>
 
 
 

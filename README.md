@@ -1,5 +1,5 @@
 # Climber Cards
-<a href="https://github.com/ClimberAB/cl-cards/releases/download/v1.3.0/cl-cards-v1.3.0.zip" target="_blank"><img src="./screenshots/downloadbutton.png?raw=true" 
+<a href="https://github.com/ClimberAB/ClimberCards/releases/download/v1.3.0/cl-cards-v1.3.0.zip" target="_blank"><img src="./screenshots/downloadbutton.png?raw=true" 
 alt="Download latest release" width="400" height="40" border="0" /></a>  
 > Table extension with cards as cells, developed for showcasing items with images. Responsive design and selection enabled, both click and swipes. Multiple layout options and Select and Go To Sheet mode
 
